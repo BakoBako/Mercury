@@ -26,10 +26,10 @@
         "phpunit/phpunit": "^9.2"
     },
     "autoload": {
-        "psr-4": { "Mercury\\": "src/" }
+        "psr-4": { "ShopsUniverse\\Mercury\\": "src/" }
     },
     "autoload-dev": {
-        "psr-4": { "Mercury\\Tests\\": "tests/" }
+        "psr-4": { "ShopsUniverse\\Mercury\\Tests\\": "tests/" }
     },
     "minimum-stability": "dev",
     "prefer-stable": true
