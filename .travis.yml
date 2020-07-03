@@ -1,0 +1,15 @@
+language: php
+
+php:
+  - 7.4
+
+install:
+  - travis_retry composer install --no-interaction --no-suggest
+
+# Testing the app (see phpunit.xml) for configs, generating Code Coverage report
+script:
+  - vendor/bin/phpunit --coverage-text
+
+cache:
+  directories:
+    - $HOME/.composer/cache
