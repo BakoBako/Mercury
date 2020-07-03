@@ -1,0 +1,36 @@
+{
+    "name": "shopsuniverse/mercury",
+    "type": "library",
+    "description": "High level PHP eCommerce abstraction.",
+    "keywords": ["shop", "ecommerce", "abstraction"],
+    "homepage": "http://mercuryshop.dev",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Aleksandar Markovski",
+            "email": "bako@gsix.me"
+        },
+        {
+            "name": "Teodos Pejoski",
+            "email": "teddy@gsix.me"
+        },
+        {
+            "name": "Aleksandar Simonovski",
+            "email": "simonovski@gmail.com"
+        }
+    ],
+    "require": {
+        "php": "^7.4"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.2"
+    },
+    "autoload": {
+        "psr-4": { "Mercury\\": "src/" }
+    },
+    "autoload-dev": {
+        "psr-4": { "Mercury\\Tests\\": "tests/" }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
