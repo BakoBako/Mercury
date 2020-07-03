@@ -1,5 +1,7 @@
 # Mercury Project
 
+[![Build Status](https://travis-ci.com/ShopsUniverse/Mercury.svg?branch=master)](https://travis-ci.com/ShopsUniverse/Mercury)
+
 Mercury is an PHP Open Source eCommerce framework agnostic abstraction.
 
 Highest details for starting to build any kind of shop in all PHP frameworks. Highest quality of code, 100% tests coverage and very flexible code. Powerful plugin abstraction that can be easily implemented in any framework.
