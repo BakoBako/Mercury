@@ -18,7 +18,7 @@ We have a handful of PHPUnit tests. Please write PHPUnit tests for new code you 
 
 ## Submitting changes
 
-Please send a [GitHub Pull Request to Mercury](https://github.com/BakoBako/Mercury/pull/new/master) with a clear list of what you've done (read more about [pull requests](http://help.github.com/pull-requests/)). When you send a pull request, we will love you forever if you include PHPUnit tests. We can always use more test coverage. Please follow our coding conventions (below) and make sure all of your commits are atomic (one feature per commit).
+Please send a [GitHub Pull Request to Mercury](https://github.com/ShopsUniverse/Mercury/pull/new/master) with a clear list of what you've done (read more about [pull requests](http://help.github.com/pull-requests/)). When you send a pull request, we will love you forever if you include PHPUnit tests. We can always use more test coverage. Please follow our coding conventions (below) and make sure all of your commits are atomic (one feature per commit).
 
 Always write a clear log message for your commits. One-line messages are fine for small changes, but bigger changes should look like this:
 

@@ -27,8 +27,8 @@ This project exists to provide simple interface and guides for building strong a
 
 Please feel free to submit an issue or pull request. 
 
-Follow this [guide](https://github.com/BakoBako/Mercury/blob/master/docs/contributing.md) for contribution. 
+Follow this [guide](https://github.com/ShopsUniverse/Mercury/blob/master/docs/contributing.md) for contribution. 
 
 ## License
 
-[MIT](https://github.com/BakoBako/Mercury/blob/master/LICENSE)
+[MIT](https://github.com/ShopsUniverse/Mercury/blob/master/LICENSE)
