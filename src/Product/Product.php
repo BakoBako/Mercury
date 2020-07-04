@@ -1,28 +1,56 @@
-<?php
+<?php /** @noinspection PhpUnhandledExceptionInspection */
 
 namespace ShopsUniverse\Mercury\Product;
 
+use ShopsUniverse\Mercury\Kernel\ComparableEntity;
+use ShopsUniverse\Mercury\Kernel\ContainsEvents;
+use ShopsUniverse\Mercury\Kernel\Entity;
 use ShopsUniverse\Mercury\Kernel\EntityCode;
-use ShopsUniverse\Mercury\Kernel\RecordableTrait;
+use ShopsUniverse\Mercury\Kernel\Locale;
+use ShopsUniverse\Mercury\Kernel\RecordableEntityTrait;
 use ShopsUniverse\Mercury\Kernel\Recordable;
-use ShopsUniverse\Mercury\Kernel\TranslatableInterface;
+use ShopsUniverse\Mercury\Kernel\Translatable;
 use ShopsUniverse\Mercury\Kernel\TranslatableTrait;
 use ShopsUniverse\Mercury\Product\Events\ProductRenamed;
 
-class Product implements ProductInterface, TranslatableInterface, Recordable
+class Product implements ProductInterface,
+    Translatable,
+    Recordable,
+    ContainsEvents,
+    ComparableEntity
 {
-    use TranslatableTrait, RecordableTrait;
-
+    use TranslatableTrait, RecordableEntityTrait;
+    private string $id;
+    private EntityCode $code;
     private ProductName $name;
+    private ProductDescription $description;
 
-    public function __construct(string $name)
-    {
-        /** @noinspection PhpUnhandledExceptionInspection */
+    public function __construct(
+        string $id,
+        string $code,
+        string $name,
+        string $description
+    ) {
+        $this->id = $id;
+        $this->code = new EntityCode($code);
         $this->name = new ProductName($name);
+        $this->description = new ProductDescription($description);
     }
 
-    public function getName(): ProductName
+    public function getId(): string
     {
+        return $this->id;
+    }
+
+    public function getName(Locale $locale = null): ProductName
+    {
+        $translation = $this->findTranslation($locale, 'name');
+
+        if ($translation) {
+            /** @noinspection PhpUnhandledExceptionInspection */
+            return new ProductName($translation);
+        }
+
         return $this->name;
     }
 
@@ -33,16 +61,28 @@ class Product implements ProductInterface, TranslatableInterface, Recordable
         /** @noinspection PhpUnhandledExceptionInspection */
         $this->name = new ProductName($name);
 
-        $this->eventStore->record(new ProductRenamed($this, $oldName, $this->name));
+        $this->record(new ProductRenamed($this, $oldName, $this->name));
     }
 
-    public function getDescription(): ProductDescription
+    public function getDescription(Locale $locale = null): ProductDescription
     {
-        // TODO: Implement getDescription() method.
+        $translation = $this->findTranslation($locale, 'description');
+
+        if ($translation) {
+            /** @noinspection PhpUnhandledExceptionInspection */
+            return new ProductDescription($translation);
+        }
+
+        return $this->description;
     }
 
     public function getCode(): EntityCode
     {
-        // TODO: Implement getCode() method.
+        return $this->code;
+    }
+
+    public function equals(Entity $entity): bool
+    {
+        return $this->code->__toString() === $entity->getCode()->__toString();
     }
 }

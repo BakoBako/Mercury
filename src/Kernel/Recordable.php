@@ -4,5 +4,5 @@ namespace ShopsUniverse\Mercury\Kernel;
 
 interface Recordable
 {
-    public function setEventStore(EventStore $eventStore): void;
+    public function record(Event $event): void;
 }

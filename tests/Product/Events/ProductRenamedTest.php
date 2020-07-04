@@ -26,13 +26,42 @@ class ProductRenamedTest extends TestCase
     public function shouldProvideProductChangedNameAndAlterer()
     {
         $event = new ProductRenamed(
-            new Product('aProductName'),
+            new Product(
+                'aProductId',
+                'aProductCode',
+                'aProductName',
+                'aProductDescription'
+            ),
             new ProductName('aChangedProductName'),
             new ProductName('aAltererProductName')
         );
 
-        $this->assertEquals(new Product('aProductName'), $event->getProduct());
+        $this->assertEquals(new Product(
+            'aProductId',
+            'aProductCode',
+            'aProductName',
+            'aProductDescription'
+        ), $event->getProduct());
         $this->assertEquals(new ProductName('aChangedProductName'), $event->getChanged());
         $this->assertEquals(new ProductName('aAltererProductName'), $event->getAlterer());
+    }
+
+    /**
+     * @test
+     */
+    public function shouldGiveEventCodeNameIfTreatedAsString()
+    {
+        $event = new ProductRenamed(
+            new Product(
+                'aProductId',
+                'aProductCode',
+                'aProductName',
+                'aProductDescription'
+            ),
+            new ProductName('aChangedProductName'),
+            new ProductName('aAltererProductName')
+        );
+
+        $this->assertEquals('product.renamed', $event);
     }
 }
