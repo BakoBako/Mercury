@@ -12,6 +12,7 @@ use ShopsUniverse\Mercury\Kernel\Recordable;
 use ShopsUniverse\Mercury\Kernel\Translatable;
 use ShopsUniverse\Mercury\Kernel\Translation;
 use ShopsUniverse\Mercury\Product\Events\ProductRenamed;
+use ShopsUniverse\Mercury\Product\MetaInfo;
 use ShopsUniverse\Mercury\Product\Product;
 use ShopsUniverse\Mercury\Product\Description;
 use ShopsUniverse\Mercury\Product\ProductInterface;
@@ -223,6 +224,20 @@ class ProductTest extends TestCase
     /**
      * @test
      */
+    public function shouldGiveProductMetaInfo()
+    {
+        $product = $this->productFixture();
+
+        $this->assertInstanceOf(MetaInfo::class, $product->getMetaInfo());
+
+        $this->assertEquals('aProductMetaTitle', $product->getMetaInfo()->getTitle());
+        $this->assertEquals('aProductMetaKeywords', $product->getMetaInfo()->getKeywords());
+        $this->assertEquals('aProductMetaDescription', $product->getMetaInfo()->getDescription());
+    }
+
+    /**
+     * @test
+     */
     public function shouldBeAbleToCompareWithOtherProducts()
     {
         $product = $this->productFixture();
@@ -233,7 +248,12 @@ class ProductTest extends TestCase
                     'aProductId',
                     'aProductCode',
                     'aProductName',
-                    'aProductDescription'
+                    'aProductDescription',
+                    new MetaInfo(
+                        'aProductMetaTitle',
+                        'aProductMetaKeywords',
+                        'aProductMetaDescription'
+                    )
                 )
             )
         );
@@ -244,7 +264,12 @@ class ProductTest extends TestCase
                     'aProductId',
                     'aProductCodeNotEqual',
                     'aProductName',
-                    'aProductDescription'
+                    'aProductDescription',
+                    new MetaInfo(
+                        'aProductMetaTitle',
+                        'aProductMetaKeywords',
+                        'aProductMetaDescription'
+                    )
                 )
             )
         );
@@ -256,7 +281,12 @@ class ProductTest extends TestCase
             'aProductId',
             'aProductCode',
             'aProductName',
-            'aProductDescription'
+            'aProductDescription',
+            new MetaInfo(
+                'aProductMetaTitle',
+                'aProductMetaKeywords',
+                'aProductMetaDescription'
+            )
         );
     }
 }

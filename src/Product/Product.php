@@ -20,21 +20,25 @@ class Product implements ProductInterface,
     Catalogable
 {
     use TranslatableTrait, RecordableEntityTrait;
+
     private string $id;
     private Code $code;
     private Name $name;
     private Description $description;
+    private MetaInfo $metaInfo;
 
     public function __construct(
         string $id,
         string $code,
         string $name,
-        string $description
+        string $description,
+        MetaInfo $metaInfo
     ) {
         $this->id = $id;
         $this->code = new Code($code);
         $this->name = new Name($name);
         $this->description = new Description($description);
+        $this->metaInfo = $metaInfo;
     }
 
     public function getId(): string
@@ -79,6 +83,11 @@ class Product implements ProductInterface,
     public function getCode(): Code
     {
         return $this->code;
+    }
+
+    public function getMetaInfo(): MetaInfo
+    {
+        return $this->metaInfo;
     }
 
     public function equals(Entity $entity): bool

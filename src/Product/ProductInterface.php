@@ -3,7 +3,6 @@
 namespace ShopsUniverse\Mercury\Product;
 
 use ShopsUniverse\Mercury\Kernel\Entity;
-use ShopsUniverse\Mercury\Kernel\Code;
 use ShopsUniverse\Mercury\Kernel\Locale;
 
 interface ProductInterface extends Entity
@@ -12,4 +11,6 @@ interface ProductInterface extends Entity
     public function rename(string $name): void;
 
     public function getDescription(Locale $locale = null) : Description;
+
+    public function getMetaInfo(): MetaInfo;
 }

@@ -5,6 +5,7 @@ namespace ShopsUniverse\Mercury\Tests\Product\Events;
 use PHPUnit\Framework\TestCase;
 use ShopsUniverse\Mercury\Kernel\Event;
 use ShopsUniverse\Mercury\Product\Events\ProductRenamed;
+use ShopsUniverse\Mercury\Product\MetaInfo;
 use ShopsUniverse\Mercury\Product\Product;
 use ShopsUniverse\Mercury\Product\Name;
 
@@ -26,22 +27,12 @@ class ProductRenamedTest extends TestCase
     public function shouldProvideProductChangedNameAndAlterer()
     {
         $event = new ProductRenamed(
-            new Product(
-                'aProductId',
-                'aProductCode',
-                'aProductName',
-                'aProductDescription'
-            ),
+            $this->productFixture(),
             new Name('aChangedProductName'),
             new Name('aAltererProductName')
         );
 
-        $this->assertEquals(new Product(
-            'aProductId',
-            'aProductCode',
-            'aProductName',
-            'aProductDescription'
-        ), $event->getProduct());
+        $this->assertEquals($this->productFixture(), $event->getProduct());
         $this->assertEquals(new Name('aChangedProductName'), $event->getChanged());
         $this->assertEquals(new Name('aAltererProductName'), $event->getAlterer());
     }
@@ -52,16 +43,26 @@ class ProductRenamedTest extends TestCase
     public function shouldGiveEventCodeNameIfTreatedAsString()
     {
         $event = new ProductRenamed(
-            new Product(
-                'aProductId',
-                'aProductCode',
-                'aProductName',
-                'aProductDescription'
-            ),
+            $this->productFixture(),
             new Name('aChangedProductName'),
             new Name('aAltererProductName')
         );
 
         $this->assertEquals('product.renamed', $event);
+    }
+
+    private function productFixture(): Product
+    {
+        return new Product(
+            'aProductId',
+            'aProductCode',
+            'aProductName',
+            'aProductDescription',
+            new MetaInfo(
+                'aProductMetaTitle',
+                'aProductMetaKeywords',
+                'aProductMetaDescription'
+            )
+        );
     }
 }
