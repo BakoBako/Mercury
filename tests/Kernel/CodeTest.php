@@ -3,13 +3,12 @@
 namespace ShopsUniverse\Mercury\Tests\Kernel;
 
 use ShopsUniverse\Mercury\Exception\ArgumentNotBlankException;
-use ShopsUniverse\Mercury\Kernel\ValueObject;
-use ShopsUniverse\Mercury\Kernel\EntityCode;
+use ShopsUniverse\Mercury\Kernel\Code;
 use ShopsUniverse\Mercury\Tests\ValueObjectCommonTests;
 
-class EntityCodeTest extends ValueObjectCommonTests
+class CodeTest extends ValueObjectCommonTests
 {
-    protected string $class = EntityCode::class;
+    protected string $class = Code::class;
     protected array $arguments = ['aCode'];
     protected string $toStringValue = 'aCode';
 
@@ -21,6 +20,6 @@ class EntityCodeTest extends ValueObjectCommonTests
         $this->expectException(ArgumentNotBlankException::class);
         $this->expectExceptionMessage('Argument $code cannot be blank');
 
-        $valueObject = new EntityCode('');
+        $valueObject = new Code('');
     }
 }

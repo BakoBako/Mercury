@@ -3,11 +3,10 @@
 namespace ShopsUniverse\Mercury\Tests\Product;
 
 use ShopsUniverse\Mercury\Exception\ArgumentNotBlankException;
-use ShopsUniverse\Mercury\Kernel\ValueObject;
 use ShopsUniverse\Mercury\Product\Description;
 use ShopsUniverse\Mercury\Tests\ValueObjectCommonTests;
 
-class ProductDescriptionTest extends ValueObjectCommonTests
+class DescriptionTest extends ValueObjectCommonTests
 {
     protected string $class = Description::class;
     protected array $arguments = ['aProductDescription'];

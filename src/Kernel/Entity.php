@@ -2,8 +2,7 @@
 
 namespace ShopsUniverse\Mercury\Kernel;
 
-interface Entity
+interface Entity extends Codify
 {
     public function getId(): string;
-    public function getCode() : EntityCode;
 }

@@ -2,9 +2,10 @@
 
 namespace ShopsUniverse\Mercury\Product;
 
+use ShopsUniverse\Mercury\Catalogue\Catalogable;
 use ShopsUniverse\Mercury\Kernel\ComparableEntity;
 use ShopsUniverse\Mercury\Kernel\Entity;
-use ShopsUniverse\Mercury\Kernel\EntityCode;
+use ShopsUniverse\Mercury\Kernel\Code;
 use ShopsUniverse\Mercury\Kernel\Locale;
 use ShopsUniverse\Mercury\Kernel\RecordableEntityTrait;
 use ShopsUniverse\Mercury\Kernel\Recordable;
@@ -15,11 +16,12 @@ use ShopsUniverse\Mercury\Product\Events\ProductRenamed;
 class Product implements ProductInterface,
     Translatable,
     Recordable,
-    ComparableEntity
+    ComparableEntity,
+    Catalogable
 {
     use TranslatableTrait, RecordableEntityTrait;
     private string $id;
-    private EntityCode $code;
+    private Code $code;
     private Name $name;
     private Description $description;
 
@@ -30,7 +32,7 @@ class Product implements ProductInterface,
         string $description
     ) {
         $this->id = $id;
-        $this->code = new EntityCode($code);
+        $this->code = new Code($code);
         $this->name = new Name($name);
         $this->description = new Description($description);
     }
@@ -74,7 +76,7 @@ class Product implements ProductInterface,
         return $this->description;
     }
 
-    public function getCode(): EntityCode
+    public function getCode(): Code
     {
         return $this->code;
     }

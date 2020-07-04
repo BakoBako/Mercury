@@ -3,7 +3,7 @@
 namespace ShopsUniverse\Mercury\Product;
 
 use ShopsUniverse\Mercury\Kernel\Entity;
-use ShopsUniverse\Mercury\Kernel\EntityCode;
+use ShopsUniverse\Mercury\Kernel\Code;
 use ShopsUniverse\Mercury\Kernel\Locale;
 
 interface ProductInterface extends Entity

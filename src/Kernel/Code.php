@@ -4,7 +4,7 @@ namespace ShopsUniverse\Mercury\Kernel;
 
 use ShopsUniverse\Mercury\Exception\ArgumentNotBlankException;
 
-class EntityCode implements ValueObject
+class Code implements ValueObject
 {
     private string $code;
 

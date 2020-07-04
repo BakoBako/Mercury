@@ -3,9 +3,10 @@
 namespace ShopsUniverse\Mercury\Tests\Product;
 
 use PHPUnit\Framework\TestCase;
+use ShopsUniverse\Mercury\Catalogue\Catalogable;
 use ShopsUniverse\Mercury\Kernel\ComparableEntity;
 use ShopsUniverse\Mercury\Kernel\Entity;
-use ShopsUniverse\Mercury\Kernel\EntityCode;
+use ShopsUniverse\Mercury\Kernel\Code;
 use ShopsUniverse\Mercury\Kernel\Locale;
 use ShopsUniverse\Mercury\Kernel\Recordable;
 use ShopsUniverse\Mercury\Kernel\Translatable;
@@ -66,6 +67,16 @@ class ProductTest extends TestCase
         $reflectionClass = new \ReflectionClass(Product::class);
 
         $this->assertTrue($reflectionClass->implementsInterface(Recordable::class));
+    }
+
+    /**
+     * @test
+     */
+    public function canBeOrganizedIntoCatalogue()
+    {
+        $reflectionClass = new \ReflectionClass(Product::class);
+
+        $this->assertTrue($reflectionClass->implementsInterface(Catalogable::class));
     }
 
     /**
@@ -182,7 +193,7 @@ class ProductTest extends TestCase
     {
         $product = $this->productFixture();
 
-        $this->assertInstanceOf(EntityCode::class, $product->getCode());
+        $this->assertInstanceOf(Code::class, $product->getCode());
         $this->assertEquals('aProductCode', $product->getCode());
     }
 
