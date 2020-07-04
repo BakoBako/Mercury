@@ -4,12 +4,12 @@ namespace ShopsUniverse\Mercury\Tests\Product;
 
 use ShopsUniverse\Mercury\Exception\ArgumentNotBlankException;
 use ShopsUniverse\Mercury\Kernel\ValueObject;
-use ShopsUniverse\Mercury\Product\ProductDescription;
+use ShopsUniverse\Mercury\Product\Description;
 use ShopsUniverse\Mercury\Tests\ValueObjectCommonTests;
 
 class ProductDescriptionTest extends ValueObjectCommonTests
 {
-    protected string $class = ProductDescription::class;
+    protected string $class = Description::class;
     protected array $arguments = ['aProductDescription'];
     protected string $toStringValue = 'aProductDescription';
 
@@ -21,6 +21,6 @@ class ProductDescriptionTest extends ValueObjectCommonTests
         $this->expectException(ArgumentNotBlankException::class);
         $this->expectExceptionMessage('Argument $description cannot be blank');
 
-        $valueObject = new ProductDescription('');
+        $valueObject = new Description('');
     }
 }

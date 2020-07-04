@@ -12,9 +12,9 @@ use ShopsUniverse\Mercury\Kernel\Translatable;
 use ShopsUniverse\Mercury\Kernel\Translation;
 use ShopsUniverse\Mercury\Product\Events\ProductRenamed;
 use ShopsUniverse\Mercury\Product\Product;
-use ShopsUniverse\Mercury\Product\ProductDescription;
+use ShopsUniverse\Mercury\Product\Description;
 use ShopsUniverse\Mercury\Product\ProductInterface;
-use ShopsUniverse\Mercury\Product\ProductName;
+use ShopsUniverse\Mercury\Product\Name;
 
 class ProductTest extends TestCase
 {
@@ -75,7 +75,7 @@ class ProductTest extends TestCase
     {
         $product = $this->productFixture();
 
-        $this->assertInstanceOf(ProductName::class, $product->getName());
+        $this->assertInstanceOf(Name::class, $product->getName());
         $this->assertEquals('aProductName', $product->getName());
     }
 
@@ -94,7 +94,7 @@ class ProductTest extends TestCase
             )
         );
 
-        $this->assertInstanceOf(ProductName::class, $product->getName());
+        $this->assertInstanceOf(Name::class, $product->getName());
         $this->assertEquals('unNombreDeProducto', $product->getName($locale));
     }
 
@@ -124,7 +124,7 @@ class ProductTest extends TestCase
 
         $product->rename('aDifferentProductName');
 
-        $this->assertInstanceOf(ProductName::class, $product->getName());
+        $this->assertInstanceOf(Name::class, $product->getName());
         $this->assertEquals('aDifferentProductName', $product->getName());
     }
 
@@ -140,8 +140,8 @@ class ProductTest extends TestCase
         foreach ($product->getRecordedEvents() as $event) {
             $this->assertInstanceOf(ProductRenamed::class, $event);
             $this->assertEquals($product, $event->getProduct());
-            $this->assertEquals(new ProductName('aProductName'), $event->getChanged());
-            $this->assertEquals(new ProductName('aDifferentProductName'), $event->getAlterer());
+            $this->assertEquals(new Name('aProductName'), $event->getChanged());
+            $this->assertEquals(new Name('aDifferentProductName'), $event->getAlterer());
         }
     }
 
@@ -152,7 +152,7 @@ class ProductTest extends TestCase
     {
         $product = $this->productFixture();
 
-        $this->assertInstanceOf(ProductDescription::class, $product->getDescription());
+        $this->assertInstanceOf(Description::class, $product->getDescription());
         $this->assertEquals('aProductDescription', $product->getDescription());
     }
 
@@ -171,7 +171,7 @@ class ProductTest extends TestCase
             )
         );
 
-        $this->assertInstanceOf(ProductDescription::class, $product->getDescription());
+        $this->assertInstanceOf(Description::class, $product->getDescription());
         $this->assertEquals('unaDescripciónDelProducto', $product->getDescription($locale));
     }
 

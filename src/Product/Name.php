@@ -5,7 +5,7 @@ namespace ShopsUniverse\Mercury\Product;
 use ShopsUniverse\Mercury\Exception\ArgumentNotBlankException;
 use ShopsUniverse\Mercury\Kernel\ValueObject;
 
-class ProductName implements ValueObject
+class Name implements ValueObject
 {
     private string $name;
 

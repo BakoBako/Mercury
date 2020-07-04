@@ -3,7 +3,6 @@
 namespace ShopsUniverse\Mercury\Product;
 
 use ShopsUniverse\Mercury\Kernel\ComparableEntity;
-use ShopsUniverse\Mercury\Kernel\ContainsEvents;
 use ShopsUniverse\Mercury\Kernel\Entity;
 use ShopsUniverse\Mercury\Kernel\EntityCode;
 use ShopsUniverse\Mercury\Kernel\Locale;
@@ -16,14 +15,13 @@ use ShopsUniverse\Mercury\Product\Events\ProductRenamed;
 class Product implements ProductInterface,
     Translatable,
     Recordable,
-    ContainsEvents,
     ComparableEntity
 {
     use TranslatableTrait, RecordableEntityTrait;
     private string $id;
     private EntityCode $code;
-    private ProductName $name;
-    private ProductDescription $description;
+    private Name $name;
+    private Description $description;
 
     public function __construct(
         string $id,
@@ -33,8 +31,8 @@ class Product implements ProductInterface,
     ) {
         $this->id = $id;
         $this->code = new EntityCode($code);
-        $this->name = new ProductName($name);
-        $this->description = new ProductDescription($description);
+        $this->name = new Name($name);
+        $this->description = new Description($description);
     }
 
     public function getId(): string
@@ -42,13 +40,13 @@ class Product implements ProductInterface,
         return $this->id;
     }
 
-    public function getName(Locale $locale = null): ProductName
+    public function getName(Locale $locale = null): Name
     {
         $translation = $this->findTranslation($locale, 'name');
 
         if ($translation) {
             /** @noinspection PhpUnhandledExceptionInspection */
-            return new ProductName($translation);
+            return new Name($translation);
         }
 
         return $this->name;
@@ -59,18 +57,18 @@ class Product implements ProductInterface,
         $oldName = $this->name;
 
         /** @noinspection PhpUnhandledExceptionInspection */
-        $this->name = new ProductName($name);
+        $this->name = new Name($name);
 
         $this->record(new ProductRenamed($this, $oldName, $this->name));
     }
 
-    public function getDescription(Locale $locale = null): ProductDescription
+    public function getDescription(Locale $locale = null): Description
     {
         $translation = $this->findTranslation($locale, 'description');
 
         if ($translation) {
             /** @noinspection PhpUnhandledExceptionInspection */
-            return new ProductDescription($translation);
+            return new Description($translation);
         }
 
         return $this->description;

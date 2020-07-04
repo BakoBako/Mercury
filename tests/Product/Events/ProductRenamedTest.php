@@ -6,7 +6,7 @@ use PHPUnit\Framework\TestCase;
 use ShopsUniverse\Mercury\Kernel\Event;
 use ShopsUniverse\Mercury\Product\Events\ProductRenamed;
 use ShopsUniverse\Mercury\Product\Product;
-use ShopsUniverse\Mercury\Product\ProductName;
+use ShopsUniverse\Mercury\Product\Name;
 
 class ProductRenamedTest extends TestCase
 {
@@ -32,8 +32,8 @@ class ProductRenamedTest extends TestCase
                 'aProductName',
                 'aProductDescription'
             ),
-            new ProductName('aChangedProductName'),
-            new ProductName('aAltererProductName')
+            new Name('aChangedProductName'),
+            new Name('aAltererProductName')
         );
 
         $this->assertEquals(new Product(
@@ -42,8 +42,8 @@ class ProductRenamedTest extends TestCase
             'aProductName',
             'aProductDescription'
         ), $event->getProduct());
-        $this->assertEquals(new ProductName('aChangedProductName'), $event->getChanged());
-        $this->assertEquals(new ProductName('aAltererProductName'), $event->getAlterer());
+        $this->assertEquals(new Name('aChangedProductName'), $event->getChanged());
+        $this->assertEquals(new Name('aAltererProductName'), $event->getAlterer());
     }
 
     /**
@@ -58,8 +58,8 @@ class ProductRenamedTest extends TestCase
                 'aProductName',
                 'aProductDescription'
             ),
-            new ProductName('aChangedProductName'),
-            new ProductName('aAltererProductName')
+            new Name('aChangedProductName'),
+            new Name('aAltererProductName')
         );
 
         $this->assertEquals('product.renamed', $event);
